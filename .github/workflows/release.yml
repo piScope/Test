@@ -28,7 +28,7 @@ jobs:
           printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
           #export HOMEBREW_GITHUB_API_TOKEN=${{ secrets.BREWRELEASETOKEN }}
           brew tap piScope/twopi
-          brew bump-formula-pr -f -d -v --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
+          brew bump-formula-pr -f -d -v --no-fork --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
 
 
 
