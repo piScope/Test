@@ -36,6 +36,7 @@ jobs:
           echo $ORIGINURL
           git remote set-url origin $ORIGINURL
           git remote -v
+          echo ${{ github.actor }}
           brew bump-formula-pr -f -d -v --no-fork --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
 
 
