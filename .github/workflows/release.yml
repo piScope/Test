@@ -54,7 +54,7 @@ jobs:
           brew bump-formula-pr -f -d -v --no-fork --write --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
           git checkout --no-track -b bump-test-${TAG_VERSION} origin/master
           git add ./test.rb	  
-          git commit --no-edit --verbose --message='test '${TAG_VERSION' -- ./test.rb
+          git commit --no-edit --verbose --message='test '${TAG_VERSION} -- ./test.rb
           cat test.rb
 
       - name: Push changes
