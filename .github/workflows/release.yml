@@ -36,9 +36,10 @@ jobs:
           A=https://x-access-token:
           B=${{ secrets.BREWRELEASETOKEN }}
           C=@github.com/piscope/homebrew-TwoPi
-          ABC=${A}${B}${C}
-          echo $ABC
-          git remote set-url origin $ABC
+          ABC="${A}""${B}""${C}"
+          echo ${A}
+          echo ${ABC}
+          git remote set-url origin ${ABC}
           git remote -v
           echo ${{ github.actor }}
           brew bump-formula-pr -f -d -v --no-fork --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
