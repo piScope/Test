@@ -34,7 +34,7 @@ jobs:
           git config --global user.email 'shiraiwa@princeton.edu'
           git config --global credential.helper cache
           A=https://x-access-token:${{ secrets.BREWRELEASETOKEN }}
-	  B=${A}@github.com/piscope/homebrew-TwoPi
+          B=${A}@github.com/piscope/homebrew-TwoPi
           echo $B
           git remote set-url origin $B
           git remote -v
