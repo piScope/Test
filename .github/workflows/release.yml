@@ -32,10 +32,12 @@ jobs:
           #
           TAG_VERSION=$(echo ${{github.event.release.tag_name}} | sed 's/[^0-9.]*//g')
           echo "TAG_VERSION=$(echo ${{github.event.release.tag_name}} | sed 's/[^0-9.]*//g')" >> $GITHUB_ENV
+
           #
           export HOMEBREW_GITHUB_API_TOKEN=${{ secrets.BREWRELEASETOKEN }}
           brew tap piScope/twopi
           cd $(brew --repo piScope/twopi)
+          echo "SRC_REPO=$(brew --repo piScope/twopi)" >> $GITHUB_ENV	  	  
           pwd
           ls -l
           #git remote -v
@@ -57,11 +59,16 @@ jobs:
           git commit --no-edit --verbose --message='test '${TAG_VERSION} -- ./test.rb
           cat test.rb
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          github_token: ${{ secrets.BREWRELEASETOKEN }}
-          branch: bump-test-${{ env.TAG_VERSION }}
+          source-directory: ${{ env.SRC_REPO }}
+          destination-github-username: 'piScope'
+          destination-repository-name: 'bump-test-'${{ env.TAG_VERSION }}
+          user-email: shiraiwa@princeton.edu
+          target-branch: master
 
 
 
