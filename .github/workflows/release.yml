@@ -32,8 +32,8 @@ jobs:
           git remote -v
           git config --global user.name 'sshiraiwa'
           git config --global user.email 'shiraiwa@princeton.edu'
-	  export ORIGINURL="https://x-access-token:"${{ secrets.BREWRELEASETOKEN }}"@github.com/piscope/homebrew-TwoPi"
-	  echo $ORIGINURL
+          export ORIGINURL="https://x-access-token:"${{ secrets.BREWRELEASETOKEN }}"@github.com/piscope/homebrew-TwoPi"
+          echo $ORIGINURL
           git remote set-url origin $ORIGINURL
           git remote -v
           brew bump-formula-pr -f -d -v --no-fork --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
