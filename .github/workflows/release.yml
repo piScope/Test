@@ -64,8 +64,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: '${{ env.SRC_REPO }}'
-          destination-repository-name: 'bump-test-'${{ env.TAG_VERSION }}
+          source-directory: ${{ env.SRC_REPO }}
+          destination-repository-name: 'bump-test-'
           destination-github-username: 'piScope'	  
           user-email: shiraiwa@princeton.edu
           target-branch: master
