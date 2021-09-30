@@ -11,7 +11,8 @@ on:
 jobs:
   update_formula_version:
     name: Bump Homebrew formula
-    runs-on: macos-latest
+    #runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -43,6 +44,7 @@ jobs:
           #git remote -v
           echo ${{ github.actor }}
           brew bump-formula-pr -f -d -v --no-fork --write --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
+          cat /usr/local/Homebrew/Library/Taps/piscope/homebrew-twopi/test.rb
 
 
 
