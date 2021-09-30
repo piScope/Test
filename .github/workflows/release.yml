@@ -67,6 +67,7 @@ jobs:
           commit-message: 'test'
           path: 'homebrew-TwoPi'
           branch: bump-test-push
+          branch_suffix: 'timestamp'
           base: 'master'
 
 
