@@ -53,21 +53,21 @@ jobs:
           git remote -v
           echo ${{ github.actor }}
           brew bump-formula-pr -f -d -v --no-fork --write --no-browse --no-audit --url "${SRC_URL}" piscope/twopi/test
-          git checkout --no-track -b bump-test-${TAG_VERSION} origin/master
+          #git checkout --no-track -b bump-test-${TAG_VERSION} origin/master
+	  git checkout --no-track -b bump-test-push origin/master
           git add ./test.rb	  
-          git commit --no-edit --verbose --message='test '${TAG_VERSION} -- ./test.rb
+          #git commit --no-edit --verbose --message='test '${TAG_VERSION} -- ./test.rb
           cat test.rb
+          cp -rf $(brew --repo piScope/twopi) ${GITHUB_WORKPLACE}
 
-      - name: Pushes to another repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          source-directory: ${{ env.SRC_REPO }}
-          destination-repository-name: 'bump-test-0.1.0'
-          destination-github-username: 'piScope'	  
-          user-email: shiraiwa@princeton.edu
-          target-branch: master
+          token: ${{ secrets.BREWRELEASETOKEN }}
+          commit-message: 'test'
+          path: 'homebrew-TwoPi'
+          branch: 'bump-test-push'
+
 
 
 
