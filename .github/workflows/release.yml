@@ -37,7 +37,7 @@ jobs:
           brew tap piScope/twopi
           cd $(brew --repo piScope/twopi)
           echo "SRC_REPO=$(brew --repo piScope/twopi)" >> $GITHUB_ENV
-          echo "NEW_BRANCH=bump-test-${TAG_VERSION}" >> $GITHUB_ENV	  	  	  
+          echo "MESSAGE=bump-test-${TAG_VERSION}" >> $GITHUB_ENV	  	  	  
           pwd
           ls -l
           #git remote -v
@@ -53,22 +53,14 @@ jobs:
           cat test.rb
           cp -rf $(brew --repo piScope/twopi) ${{ github.workspace }}/homebrew-TwoPi
 
-      - name: Push to built branch
-        uses: Automattic/action-commit-to-branch@master
-        with:
-          branch: ${{ env.NEW_BRANCH }}
-          commit_message: 'Build master'
-        env:
-          GITHUB_TOKEN:  ${{ secrets.BREWRELEASETOKEN }}
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.BREWRELEASETOKEN }}
-          commit-message: 'test'
+          commit-message: '${{ env.MESSAGE }}
           path: 'homebrew-TwoPi'
-          branch: ${{ env.NEW_BRANCH }}
-          #branch-suffix: 'timestamp'
+          branch: 'bump-test'
+          branch-suffix: 'timestamp'
           base: 'master'
 
 
