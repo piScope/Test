@@ -57,7 +57,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.BREWRELEASETOKEN }}
-          commit-message: '${{ env.MESSAGE }}
+          commit-message: ${{ env.MESSAGE }}
           path: 'homebrew-TwoPi'
           branch: 'bump-test'
           branch-suffix: 'timestamp'
